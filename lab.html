@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab · Roger Sanjaume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      /* Typography from main site */
+      --font-serif: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+      --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+      /* Dark Editorial Palette */
+      --color-bg: #1A1816;
+      /* Very dark, warm brown/grey */
+      --color-bg-card: #22201D;
+      /* Slightly lighter for cards */
+      --color-text: #F2EFE9;
+      /* Creamy white for text */
+      --color-text-secondary: #AAA399;
+      /* Muted text */
+      --color-accent: #B04A32;
+      /* Same exact brand red */
+      --color-rule: #3D3934;
+      /* Dark separators */
+
+      --transition-base: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 120%; /* Bump the base rem value up to scale typography globally */
+    }
+
+    body {
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-sans);
+      line-height: 1.7;
+      padding: 4rem 3rem;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(26, 24, 22, 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-rule);
+      transition: box-shadow var(--transition-base);
+    }
+
+    .navbar.scrolled {
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .navbar__container {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 1rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .navbar__logo {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--color-text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .navbar__links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .navbar__links a {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      transition: color var(--transition-base);
+    }
+
+    .navbar__links a:hover {
+      color: var(--color-text);
+    }
+
+    /* Header */
+    header {
+      max-width: 1500px;
+      margin: 10rem auto 6rem auto;
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(4rem, 8vw, 6rem);
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      font-size: 1.4rem;
+      color: var(--color-text-secondary);
+      max-width: 850px;
+      font-weight: 300;
+    }
+
+    /* Grid layout */
+    .lab-grid {
+      max-width: 1500px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+      gap: 3rem;
+    }
+
+    .project {
+      display: block;
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-rule);
+      border-radius: 4px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: transform var(--transition-base), border-color var(--transition-base);
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+      border-color: var(--color-accent);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 280px;
+      overflow: hidden;
+      border-bottom: 1px solid var(--color-rule);
+    }
+
+    .project-image img,
+    .project-image video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform var(--transition-base);
+      filter: brightness(0.85);
+      /* Slightly darkened so it fits the dark theme */
+    }
+
+    .project:hover .project-image img,
+    .project:hover .project-image video {
+      transform: scale(1.05);
+      filter: brightness(1.1);
+      /* Brighten on hover; video feels better slightly over-brightened */
+    }
+
+    .project-body {
+      padding: 2.5rem;
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1rem;
+    }
+
+    .status {
+      font-size: 0.95rem;
+      font-family: monospace;
+      color: var(--color-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    h2 {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      transition: color var(--transition-base);
+    }
+
+    .project:hover h2 {
+      color: var(--color-accent);
+    }
+
+    .desc {
+      font-size: 1.15rem;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .project--down {
+      cursor: not-allowed;
+      opacity: 0.8;
+      border-color: var(--color-rule) !important;
+      transform: none !important;
+    }
+
+    .project--down .project-image img,
+    .project--down .project-image video {
+      filter: grayscale(100%) brightness(0.5) !important;
+      transform: none !important;
+    }
+
+    .project--down h2 {
+      color: var(--color-text-secondary) !important;
+    }
+
+    .project--down .status {
+      color: var(--color-text-secondary);
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav id="navbar" class="navbar">
+    <div class="navbar__container">
+      <a href="index.html" class="navbar__logo">RSC</a>
+      <ul class="navbar__links">
+        <li><a href="index.html#serveis">Serveis</a></li>
+        <li><a href="index.html#portfoli">Portfoli</a></li>
+        <li><a href="index.html#collaboracions">Col·laboracions</a></li>
+        <li><a href="index.html#contacte">Contacte</a></li>
+        <li><a href="#" style="color: var(--color-accent); font-style: italic; font-weight: bold;">Lab</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header>
+    <h1>Laboratori</h1>
+    <p class="subtitle">
+      Aquest és un espai de recull per a projectes experimentals i prototips
+    </p>
+  </header>
+
+  <main class="lab-grid">
+
+    <a href="https://catbru.github.io/WikiTrends/" target="_blank" class="project">
+      <div class="project-image">
+        <video src="imatges/wikitrends.webm" autoplay loop muted playsinline style="pointer-events: none;"></video>
+      </div>
+      <div class="project-body">
+        <div class="project-header">
+          <h2>WikiTrends</h2>
+          <span class="status">[ Live ]</span>
+        </div>
+        <p class="desc">Comparador històric de visites a la Viquipèdia. Permet analitzar i contrastar tendències de
+          lectura entre diferents articles i edicions idiomàtiques de manera interactiva.</p>
+      </div>
+    </a>
+
+    <a href="https://catbru.github.io/latent-space-ontology-web/" target="_blank" class="project">
+      <div class="project-image">
+        <video src="imatges/latent_space_ontology.webm" autoplay loop muted playsinline
+          style="pointer-events: none;"></video>
+      </div>
+      <div class="project-body">
+        <div class="project-header">
+          <h2>Ontologia de l'Espai Latent</h2>
+          <span class="status">[ Live ]</span>
+        </div>
+        <p class="desc">Visualització interactiva que mapeja 1.000 filòsofs en l'espai semàntic. La posició de cada
+          pensador reflecteix la distància intel·lectual entre les seves idees — calculat mitjançant vectors
+          d'embeddings de 3.072 dimensions.</p>
+      </div>
+    </a>
+
+    <a href="https://rogersanjaume.cat/apps/prisma/prisma-web2/" target="_blank" class="project">
+      <div class="project-image">
+        <video src="imatges/prisma.webm" autoplay loop muted playsinline style="pointer-events: none;"></video>
+      </div>
+      <div class="project-body">
+        <div class="project-header">
+          <h2>PRISMA</h2>
+          <span class="status">[ Live ]</span>
+        </div>
+        <p class="desc">Metamitjà que agrega la mateixa notícia en diferents mitjans mostrant el biaix i punts cecs de
+          les diferents narratives en funció dels eixos dreta-esquerra i centralisme-perifèria de cada línia editorial.
+        </p>
+      </div>
+    </a>
+
+    <a href="https://rogersanjaume.cat/apps/viasona/" target="_blank" class="project">
+      <div class="project-image">
+        <video src="imatges/viasona.webm" autoplay loop muted playsinline style="pointer-events: none;"></video>
+      </div>
+      <div class="project-body">
+        <div class="project-header">
+          <h2>Viasona Data</h2>
+          <span class="status">[ Live ]</span>
+        </div>
+        <p class="desc">Visualització d'artistes catalans i les seves connexions. Basada en dades de Viasona i Spotify,
+          permet escoltar fragments de les cançons.</p>
+      </div>
+    </a>
+
+    <a href="https://rogersanjaume.cat/apps/DSPC" target="_blank" class="project">
+      <div class="project-image">
+        <img src="imatges/lab_parlament.png" alt="Resums del Parlament" loading="lazy">
+      </div>
+      <div class="project-body">
+        <div class="project-header">
+          <h2>Parlament de Catalunya</h2>
+          <span class="status">[ Live ]</span>
+        </div>
+        <p class="desc">Consulta ràpida del diari de sessions parlamentàries. Cerca per contingut, filtra votacions i
+          visualitza els arguments de cada grup parlamentari.</p>
+      </div>
+    </a>
+
+    <a href="https://shiny.rogersanjaume.cat/atles_shiny/" target="_blank" class="project">
+      <div class="project-image">
+        <img src="imatges/lab_atles-habitatge.png" alt="Atles Habitatge" loading="lazy">
+      </div>
+      <div class="project-body">
+        <div class="project-header">
+          <h2>Atles de l'Habitatge</h2>
+          <span class="status">[ Live ]</span>
+        </div>
+        <p class="desc">Dashboard per monitorar preus del lloguer a Catalunya. Integra dades oficials d'Incasòl i
+          portals immobiliaris amb comparatives territorials.</p>
+      </div>
+    </a>
+
+    <div class="project project--down">
+      <div class="project-image">
+        <img src="imatges/lab_retards-renfe.png" alt="Retards Renfe" loading="lazy">
+      </div>
+      <div class="project-body">
+        <div class="project-header">
+          <h2>Retards Renfe</h2>
+          <span class="status">[ Down ]</span>
+        </div>
+        <p class="desc">Monitoratge en temps real dels retards de trens a Catalunya. Detall d'estacions afectades,
+          minuts acumulats i arribades previstes.</p>
+      </div>
+    </div>
+
+    <a href="https://shiny.rogersanjaume.cat/Congreso/" target="_blank" class="project">
+      <div class="project-image">
+        <img src="imatges/lab_congres.png" alt="Votacions Congrés" loading="lazy">
+      </div>
+      <div class="project-body">
+        <div class="project-header">
+          <h2>Votacions al Congrés</h2>
+          <span class="status">[ Live ]</span>
+        </div>
+        <p class="desc">Cerca, filtra i visualitza les votacions al Congrés dels Diputats. Patrons de vot per grup
+          parlamentari i enllaços als vídeos d'intervenció.</p>
+      </div>
+    </a>
+
+    <a href="https://shiny.rogersanjaume.cat/Paremiologia/" target="_blank" class="project">
+      <div class="project-image">
+        <img src="imatges/lab_refranys.png" alt="Refranys Catalans" loading="lazy">
+      </div>
+      <div class="project-body">
+        <div class="project-header">
+          <h2>Paremiologia</h2>
+          <span class="status">[ Live ]</span>
+        </div>
+        <p class="desc">Explorador interactiu de la base de dades de la Paremiologia Catalana Comparada Digital.
+          Visualitza l'evolució històrica dels dits.</p>
+      </div>
+    </a>
+
+    <div class="project project--down">
+      <div class="project-image">
+        <img src="imatges/lab_timelineR.png" alt="TimelineR" loading="lazy">
+      </div>
+      <div class="project-body">
+        <div class="project-header">
+          <h2>TimelineR</h2>
+          <span class="status">[ Down ]</span>
+        </div>
+        <p class="desc">Algorisme basat en dades públiques i anàlisi de xarxes que analitza preferències polítiques a
+          Twitter a partir de les relacions entre seguidors.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    // Navbar scroll shadow
+    var navbar = document.getElementById('navbar');
+    if (navbar) {
+      window.addEventListener('scroll', function () {
+        navbar.classList.toggle('scrolled', window.scrollY > 20);
+      });
+    }
+  </script>
+</body>
+
+</html>
