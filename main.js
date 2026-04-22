@@ -80,5 +80,33 @@
         navbar.classList.toggle('scrolled', window.scrollY > 20);
       });
     }
+
+    // ── Hamburger menu ────────────────────────────────
+    var navToggle = document.getElementById('navbar-toggle');
+    var navLinks = document.getElementById('navbar-links');
+    if (navToggle && navLinks) {
+      navToggle.addEventListener('click', function() {
+        navToggle.classList.toggle('open');
+        navLinks.classList.toggle('active');
+      });
+      
+      navLinks.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          navToggle.classList.remove('open');
+          navLinks.classList.remove('active');
+        });
+      });
+    }
+
+    // ── Servei fold/unfold on mobile ──────────────────
+    document.querySelectorAll('.servei__header').forEach(function(header) {
+      header.addEventListener('click', function() {
+        var icon = header.querySelector('.servei__icon');
+        if (icon && window.getComputedStyle(icon).display !== 'none') {
+          var servei = header.closest('.servei');
+          servei.classList.toggle('open');
+        }
+      });
+    });
   });
 })();

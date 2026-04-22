@@ -29,7 +29,12 @@
   <nav id="navbar" class="navbar">
     <div class="navbar__container">
       <a href="#hero" class="navbar__logo">RSC</a>
-      <ul class="navbar__links">
+      <button class="navbar__toggle" id="navbar-toggle" aria-label="Obrir el menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="navbar__links" id="navbar-links">
         <li><a href="#serveis">Serveis</a></li>
         <li><a href="#portfoli">Portfoli</a></li>
         <li><a href="#collaboracions">Col·laboracions</a></li>
@@ -64,47 +69,68 @@
 
         <!-- Servei I -->
         <article class="servei" id="servei-processos">
-          <span class="servei__number">I</span>
-          <h2 class="servei__title">Consultoria de Processos Digitals</h2>
-          <p class="servei__lede">De la idea a l'operació.</p>
-          <dl class="servei__list">
-            <dt>Diagnòstic de fluxos</dt>
-            <dd>Identificació de colls d'ampolla en la gestió de la informació.</dd>
-            <dt>Selecció d'eines <span class="servei__tag">(Toolstack)</span></dt>
-            <dd>Assessorament independent en programari lliure, SaaS i eines d'IA per a l'optimització de recursos.</dd>
-            <dt>Acompanyament estratègic</dt>
-            <dd>Definició de processos per a projectes que inicien la seva digitalització.</dd>
-          </dl>
+          <div class="servei__header">
+            <span class="servei__number">I</span>
+            <div class="servei__title-wrap">
+              <h2 class="servei__title">Consultoria de Processos Digitals</h2>
+              <svg class="servei__icon" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </div>
+          <div class="servei__content">
+            <p class="servei__lede">De la idea a l'operació.</p>
+            <dl class="servei__list">
+              <dt>Diagnòstic de fluxos</dt>
+              <dd>Identificació de colls d'ampolla en la gestió de la informació.</dd>
+              <dt>Selecció d'eines <span class="servei__tag">(Toolstack)</span></dt>
+              <dd>Assessorament independent en programari lliure, SaaS i eines d'IA per a l'optimització de recursos.</dd>
+              <dt>Acompanyament estratègic</dt>
+              <dd>Definició de processos per a projectes que inicien la seva digitalització.</dd>
+            </dl>
+          </div>
         </article>
 
         <!-- Servei II -->
         <article class="servei" id="servei-enginyeria">
-          <span class="servei__number">II</span>
-          <h2 class="servei__title">Enginyeria de Dades</h2>
-          <p class="servei__lede">L'arquitectura que sosté el projecte.</p>
-          <dl class="servei__list">
-            <dt>Disseny de pipelines <span class="servei__tag">(ELT/ETL)</span></dt>
-            <dd>Automatització i sanejament de grans volums de dades.</dd>
-            <dt>Integració de sistemes</dt>
-            <dd>Connexió d'ERPs (Odoo), CRMs i bases de dades per evitar silos d'informació.</dd>
-            <dt>Monitorització tècnica</dt>
-            <dd>Control de sistemes de producció i fluxos de dades crítics.</dd>
-          </dl>
+          <div class="servei__header">
+            <span class="servei__number">II</span>
+            <div class="servei__title-wrap">
+              <h2 class="servei__title">Enginyeria de Dades</h2>
+              <svg class="servei__icon" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </div>
+          <div class="servei__content">
+            <p class="servei__lede">L'arquitectura que sosté el projecte.</p>
+            <dl class="servei__list">
+              <dt>Disseny de pipelines <span class="servei__tag">(ELT/ETL)</span></dt>
+              <dd>Automatització i sanejament de grans volums de dades.</dd>
+              <dt>Integració de sistemes</dt>
+              <dd>Connexió d'ERPs (Odoo), CRMs i bases de dades per evitar silos d'informació.</dd>
+              <dt>Monitorització tècnica</dt>
+              <dd>Control de sistemes de producció i fluxos de dades crítics.</dd>
+            </dl>
+          </div>
         </article>
 
         <!-- Servei III -->
         <article class="servei" id="servei-humanitats">
-          <span class="servei__number">III</span>
-          <h2 class="servei__title">Humanitats Digitals i Recerca</h2>
-          <p class="servei__lede">Ciència de dades amb rigor acadèmic.</p>
-          <dl class="servei__list">
-            <dt>Periodisme de dades</dt>
-            <dd>Extracció, anàlisi i visualització per a investigacions periodístiques.</dd>
-            <dt>Suport a la recerca</dt>
-            <dd>Anàlisi estadística avançada en R i Python per a ciències socials.</dd>
-            <dt>Agents d'IA personalitzats</dt>
-            <dd>Desenvolupament d'eines (MCP) per a la interacció natural amb dades oficials i arxius.</dd>
-          </dl>
+          <div class="servei__header">
+            <span class="servei__number">III</span>
+            <div class="servei__title-wrap">
+              <h2 class="servei__title">Humanitats Digitals i Recerca</h2>
+              <svg class="servei__icon" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </div>
+          <div class="servei__content">
+            <p class="servei__lede">Ciència de dades amb rigor acadèmic.</p>
+            <dl class="servei__list">
+              <dt>Periodisme de dades</dt>
+              <dd>Extracció, anàlisi i visualització per a investigacions periodístiques.</dd>
+              <dt>Suport a la recerca</dt>
+              <dd>Anàlisi estadística avançada en R i Python per a ciències socials.</dd>
+              <dt>Agents d'IA personalitzats</dt>
+              <dd>Desenvolupament d'eines (MCP) per a la interacció natural amb dades oficials i arxius.</dd>
+            </dl>
+          </div>
         </article>
 
       </div>
