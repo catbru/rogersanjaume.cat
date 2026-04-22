@@ -235,6 +235,19 @@
     .project--down .status {
       color: var(--color-text-secondary);
     }
+
+    @media (max-width: 680px) {
+      html { font-size: 100%; }
+      body { padding: 1.5rem; }
+      .navbar__container { flex-direction: column; gap: 0.5rem; padding: 1rem; }
+      .navbar__links { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+      .navbar__logo { display: none; }
+      .lab-grid { grid-template-columns: 1fr; gap: 2rem; }
+      header { margin: 8rem auto 3rem auto; }
+      h1 { font-size: 3.5rem; }
+      .project-body { padding: 1.5rem; }
+      .project-image { height: 220px; }
+    }
   </style>
 </head>
 
