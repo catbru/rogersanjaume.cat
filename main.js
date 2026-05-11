@@ -68,9 +68,16 @@
     // ── Easter egg: foto mirall ────────────────────────
     var photo = document.querySelector('.hero__photo');
     if (photo) {
-      photo.addEventListener('mouseenter', function () {
+      var supportsHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+      var togglePhotoFlip = function () {
         photo.classList.toggle('flipped');
-      });
+      };
+
+      if (supportsHover) {
+        photo.addEventListener('mouseenter', togglePhotoFlip);
+      } else {
+        photo.addEventListener('click', togglePhotoFlip);
+      }
     }
 
     // ── Navbar scroll shadow ──────────────────────────
